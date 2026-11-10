@@ -1,50 +1,40 @@
 extends Node
 
-const JUGADOR = preload("res://escena_Prueba.tscn")
-
 var client: Colyseus.Client
 var room: Colyseus.Room
 var callbacks: Colyseus.Callbacks
-var nodos := {}   # sessionId -> nodo del jugador
+var nodos_jugadores := {}
 
-func conectar(skin: String):
+func _ready():
 	client = Colyseus.Client.new("ws://localhost:2567")
-	room = client.join_or_create("sala_juego", {"skin": skin})
+	room = client.join_or_create("my_room")
 	if room:
-		room.joined.connect(_on_unido)
-		room.message_received.connect(_on_mensaje)
+		room.joined.connect(_on_joined)
+		room.message_received.connect(_on_message)
 		room.error.connect(func(code, msg): printerr("Error ", code, ": ", msg))
 
-func _on_unido():
+func _on_joined():
+	print("Conectado. Mi ID: ", room.get_session_id())
 	callbacks = Colyseus.Callbacks.of(room)
-	callbacks.on_add("jugadores", _on_jugador_agregado)      # = Spawner
-	callbacks.on_remove("jugadores", _on_jugador_eliminado)
+	callbacks.on_add("players", _on_player_add)
+	callbacks.on_remove("players", _on_player_remove)
 
-func _on_jugador_agregado(jugador, session_id: String):
-	var nodo = JUGADOR.instantiate()
-	nodo.name = session_id
-	nodo.es_local = (session_id == room.get_session_id())
-	get_tree().current_scene.get_node("Jugadores").add_child(nodo)
-	nodos[session_id] = nodo
+func _on_player_add(player, key: String):
+	var sprite := Sprite2D.new()
+	sprite.texture = preload("res://icon.svg")
+	add_child(sprite)
+	nodos_jugadores[key] = sprite
+	callbacks.listen(player, "x", func(actual, _ant): sprite.position.x = actual)
+	callbacks.listen(player, "y", func(actual, _ant): sprite.position.y = actual)
 
-	# = Synchronizer: escuchar cambios de cada propiedad
-	callbacks.listen(jugador, "x", func(v, _ant): nodo.objetivo.x = v)
-	callbacks.listen(jugador, "y", func(v, _ant): nodo.objetivo.y = v)
-	callbacks.listen(jugador, "vida", func(v, _ant): nodo.set_vida(v))
-	callbacks.listen(jugador, "skin", func(v, _ant): nodo.set_skin(v))
+func _on_player_remove(_player, key: String):
+	if nodos_jugadores.has(key):
+		nodos_jugadores[key].queue_free()
+		nodos_jugadores.erase(key)
 
-func _on_jugador_eliminado(_jugador, session_id: String):
-	if nodos.has(session_id):
-		nodos[session_id].queue_free()
-		nodos.erase(session_id)
+func _on_message(type, data):
+	print("[", type, "] ", data)   # recibe el broadcast "chat"
 
-func _on_mensaje(tipo, data):
-	if tipo == "golpe" and nodos.has(data.objetivo):
-		nodos[data.objetivo].animar_golpe()
-
-# --- Funciones para llamar desde el juego ---
-func enviar_posicion(pos: Vector2):
-	room.send_message("mover", {"x": pos.x, "y": pos.y})
-
-func atacar(objetivo_id: String):
-	room.send_message("atacar", {"objetivo": objetivo_id})
+func mover(pos: Vector2):
+	if room and room.connected:
+		room.send_message("move", {"x": pos.x, "y": pos.y})   # → messages.move en Node
