@@ -1,34 +1,6 @@
 [gd_scene format=3 uid="uid://bhj6uk1tb545u"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4lefe"]
+[ext_resource type="Script" uid="uid://brtisqnpxojpf" path="res://Scripts/multiplayer.gd" id="1_w4nu1"]
 
-[sub_resource type="PlaceholderMesh" id="PlaceholderMesh_kh0q7"]
-
-[sub_resource type="MeshTexture" id="MeshTexture_dksfx"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_kh0q7"]
-
-[node name="Node2D" type="Node2D" unique_id=326929701]
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=257751784]
-material = SubResource("CanvasItemMaterial_4lefe")
-use_parent_material = true
-skew = -0.15707964
-mesh = SubResource("PlaceholderMesh_kh0q7")
-texture = SubResource("MeshTexture_dksfx")
-
-[node name="Node2D" type="Node2D" parent="." unique_id=690358981]
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1390818330]
-scale = Vector2(5, 5)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1968686923]
-position = Vector2(58.999996, 53.799995)
-shape = SubResource("CircleShape2D_kh0q7")
-
-[node name="BarraVida" type="ProgressBar" parent="CharacterBody2D" unique_id=783487235]
-offset_left = 3.1999998
-offset_top = 4.9999995
-offset_right = 80.99999
-offset_bottom = 17.4
-show_percentage = false
+[node name="Node2D" type="Node2D" unique_id=667556909]
+script = ExtResource("1_w4nu1")
