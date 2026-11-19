@@ -1,6 +1,47 @@
 [gd_scene format=3 uid="uid://bhj6uk1tb545u"]
 
-[ext_resource type="Script" uid="uid://brtisqnpxojpf" path="res://Scripts/multiplayer.gd" id="1_w4nu1"]
+[sub_resource type="Theme" id="Theme_w4nu1"]
 
-[node name="Node2D" type="Node2D" unique_id=667556909]
-script = ExtResource("1_w4nu1")
+[sub_resource type="FontFile" id="FontFile_buc7d"]
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[sub_resource type="Theme" id="Theme_0gduy"]
+default_font = SubResource("FontFile_buc7d")
+
+[node name="Control" type="Control" unique_id=2051378257]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_w4nu1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=590500125]
+modulate = Color(1, 0.2, 1, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_0gduy")
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer" unique_id=68354868]
+layout_mode = 2
+
+[node name="LineEdit2" type="LineEdit" parent="VBoxContainer" unique_id=2104016625]
+layout_mode = 2
