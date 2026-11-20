@@ -1,47 +1,53 @@
 [gd_scene format=3 uid="uid://bhj6uk1tb545u"]
 
-[sub_resource type="Theme" id="Theme_w4nu1"]
+[ext_resource type="Script" uid="uid://dutq1bkgc2k6w" path="res://loguin.gd" id="1_loguin"]
 
-[sub_resource type="FontFile" id="FontFile_buc7d"]
-cache/0/variation_coordinates = {}
-cache/0/face_index = 0
-cache/0/embolden = 0.0
-cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
-cache/0/spacing_top = 0
-cache/0/spacing_bottom = 0
-cache/0/spacing_space = 0
-cache/0/spacing_glyph = 0
-cache/0/baseline_offset = 0.0
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-
-[sub_resource type="Theme" id="Theme_0gduy"]
-default_font = SubResource("FontFile_buc7d")
-
-[node name="Control" type="Control" unique_id=2051378257]
+[node name="Control" type="Control" unique_id=1003546970]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_w4nu1")
+script = ExtResource("1_loguin")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=590500125]
-modulate = Color(1, 0.2, 1, 1)
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=38551325]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_0gduy")
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer" unique_id=68354868]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=537336665]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+theme_override_constants/separation = 8
 
-[node name="LineEdit2" type="LineEdit" parent="VBoxContainer" unique_id=2104016625]
+[node name="titulo" type="Label" parent="CenterContainer/VBoxContainer" unique_id=650031783]
 layout_mode = 2
+text = "Iniciar sesión"
+horizontal_alignment = 1
+
+[node name="lbl_usuario" type="Label" parent="CenterContainer/VBoxContainer" unique_id=510183705]
+layout_mode = 2
+text = "Usuario"
+
+[node name="usuario" type="LineEdit" parent="CenterContainer/VBoxContainer" unique_id=942211692]
+layout_mode = 2
+placeholder_text = "Escribe tu usuario"
+
+[node name="lbl_password" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1223853734]
+layout_mode = 2
+text = "Contraseña"
+
+[node name="password" type="LineEdit" parent="CenterContainer/VBoxContainer" unique_id=959749]
+layout_mode = 2
+placeholder_text = "Escribe tu contraseña"
+secret = true
+
+[node name="entrar" type="Button" parent="CenterContainer/VBoxContainer" unique_id=481647799]
+layout_mode = 2
+text = "Entrar"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="." unique_id=2081112489]

@@ -12,7 +12,6 @@ func _ready() -> void:
 	boton.pressed.connect(_entrar)
 	usuario.grab_focus()
 	password.text_submitted.connect(func(_t): _entrar())
-	boton.pressed.connect(_entrar)
 	print("en  ready")
 	pass # Replace with function body.
 
@@ -26,5 +25,5 @@ func _entrar():
 	var body = JSON.stringify({"usuario": usuario.text.strip_edges(), "password":password.text})
 	http.request(URL + "/login", ["Content-Type: application/json"], HTTPClient.METHOD_POST, body)
 	print(body)	
-	print("Presiono")
+	print("PresionoLaboratorio III")
 	print(usuario.text.strip_edges())
