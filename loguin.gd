@@ -1,6 +1,6 @@
 extends Control
 
-const URL = "http://localhost:2567"
+const URL = "http://localhost:2567/jugador"
 
 @onready var usuario = $CenterContainer/VBoxContainer/usuario
 @onready var boton: Button  = %entrar
@@ -22,8 +22,7 @@ func _process(delta: float) -> void:
 
 
 func _entrar():
-	var body = JSON.stringify({"usuario": usuario.text.strip_edges(), "password":password.text})
-	http.request(URL + "/login", ["Content-Type: application/json"], HTTPClient.METHOD_POST, body)
+	var body = JSON.stringify({"mail": usuario.text.strip_edges(), "password":password.text})
+	http.request(URL + "/loguin", ["Content-Type: application/json"], HTTPClient.METHOD_POST, body)
 	print(body)	
-	print("PresionoLaboratorio III")
 	print(usuario.text.strip_edges())
