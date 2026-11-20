@@ -11,6 +11,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_loguin")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1983715488]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.13725491, 0.50980395, 1)
+
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=38551325]
 layout_mode = 1
 anchors_preset = 15
@@ -20,34 +29,42 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=537336665]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 15
 
 [node name="titulo" type="Label" parent="CenterContainer/VBoxContainer" unique_id=650031783]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Iniciar sesión"
 horizontal_alignment = 1
 
 [node name="lbl_usuario" type="Label" parent="CenterContainer/VBoxContainer" unique_id=510183705]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Usuario"
 
 [node name="usuario" type="LineEdit" parent="CenterContainer/VBoxContainer" unique_id=942211692]
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 placeholder_text = "Escribe tu usuario"
 
 [node name="lbl_password" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1223853734]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Contraseña"
 
 [node name="password" type="LineEdit" parent="CenterContainer/VBoxContainer" unique_id=959749]
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 placeholder_text = "Escribe tu contraseña"
 secret = true
 
 [node name="entrar" type="Button" parent="CenterContainer/VBoxContainer" unique_id=481647799]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 35)
 layout_mode = 2
+theme_override_font_sizes/font_size = 21
 text = "Entrar"
 
 [node name="HTTPRequest" type="HTTPRequest" parent="." unique_id=2081112489]

@@ -3,7 +3,7 @@ extends Control
 const URL = "http://localhost:2567"
 
 @onready var usuario = $CenterContainer/VBoxContainer/usuario
-@onready var boton  =$CenterContainer/VBoxContainer/entrar
+@onready var boton: Button  = %entrar
 @onready var password = $CenterContainer/VBoxContainer/password
 @onready var http = $HTTPRequest
 
